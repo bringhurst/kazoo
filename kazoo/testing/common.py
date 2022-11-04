@@ -239,7 +239,7 @@ log4j.appender.ROLLINGFILE.File="""
         jars = glob((os.path.join(self.install_path, "zookeeper-*.jar")))
         if jars:
             # Release build (`ant package`)
-            jars.extend(glob(os.path.join(self.install_path, "lib/*.jar")))
+            jars.extend(glob(os.path.join(self.install_path, "lib", "*.jar")))
             jars.extend(glob(os.path.join(self.install_path, "*.jar")))
             # support for different file locations on Debian/Ubuntu
             jars.extend(glob(os.path.join(self.install_path, "log4j-*.jar")))
@@ -252,10 +252,10 @@ log4j.appender.ROLLINGFILE.File="""
         else:
             # Development build (plain `ant`)
             jars = glob(
-                (os.path.join(self.install_path, "build/zookeeper-*.jar"))
+                (os.path.join(self.install_path, "build", "zookeeper-*.jar"))
             )
             jars.extend(
-                glob(os.path.join(self.install_path, "build/lib/*.jar"))
+                glob(os.path.join(self.install_path, "build", "lib", "*.jar"))
             )
 
         return os.pathsep.join(jars)

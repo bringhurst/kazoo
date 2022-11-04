@@ -41,12 +41,7 @@ class SelectTestCase(unittest.TestCase):
         with open(__file__, "rb") as fp:
             fd = fp.fileno()
             fp.close()
-            try:
-                select([fd], [], [], 0)
-            except OSError as err:
-                self.assertEqual(err.errno, errno.EBADF)
-            else:
-                self.fail("exception not raised")
+            self.assertRaises(ValueError, select, [fd], [], [], 0)
 
     def test_returned_list_identity(self):
         # See issue #8329

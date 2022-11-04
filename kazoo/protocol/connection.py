@@ -659,7 +659,7 @@ class ConnectionHandler(object):
             return STOP_CONNECTING
         except (ConnectionDropped, KazooTimeoutError) as e:
             if isinstance(e, ConnectionDropped):
-                self.logger.warning("Connection dropped: %s", e)
+                self.logger.exception("Connection dropped: %s", e)
             else:
                 self.logger.warning("Connection time-out: %s", e)
             if client._state != KeeperState.CONNECTING:
